@@ -1,0 +1,75 @@
+const handleSubmit2 = async (event) => {
+        event.preventDefault();
+
+        if (!stripe || !elements) {
+            /*return (
+                <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </Spinner>
+                
+            )*/
+            return;
+        }
+
+        const paymentResult = await stripe.confirmCardPayment(process.env.REACT_APP_STRIPE_PRIVATE_KEY_TEST, {
+            payment_method: {
+                card: elements.getElement(CardElement),
+                type: 'card',
+                billing_details: {
+                    name: 'vially'
+                }
+            }
+        });
+
+        //loading a false
+
+        if (paymentResult.error) {
+
+            console.log("erreur: ", paymentResult.error.message);
+        } else {
+            if (paymentResult.paymentIntent.status === "succeeded") {
+                alert("Payment effectué");
+            } else
+                alert("Le Payment à échoué");
+            console.log(paymentResult);
+        }
+
+    }
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        const { error, paymentMethod } = await stripe.createPaymentMethod({
+            type: 'card',
+            card: elements.getElement(CardElement)
+        });
+
+        if (!error) {
+
+            //envoi du token au back
+
+            try {
+                const { id } = paymentMethod;
+
+                const response = await axios({
+                    url: 'http://localhost:8080/stripe/charge',
+                    method: 'post',
+                    data: {
+                        amount: 100 * 100,
+                        id: id
+                    }
+                });
+
+                if (response.data.success) {
+                    console.log("tout s'est bien passé");
+                } else {
+                    console.log("une erreur est survenue");
+                }
+            } catch (error) {
+                console.log("error :", error);
+            }
+        } else {
+
+            console.log(error.message);
+        }
+    }
