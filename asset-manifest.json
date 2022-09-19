@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/luxuryShop/static/css/main.e045c11e.css",
+    "main.js": "/luxuryShop/static/js/main.8a90d2be.js",
+    "static/media/vitrine.jpg": "/luxuryShop/static/media/vitrine.e522959322398c90b163.jpg",
+    "index.html": "/luxuryShop/index.html",
+    "main.e045c11e.css.map": "/luxuryShop/static/css/main.e045c11e.css.map",
+    "main.8a90d2be.js.map": "/luxuryShop/static/js/main.8a90d2be.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e045c11e.css",
+    "static/js/main.8a90d2be.js"
+  ]
+}
