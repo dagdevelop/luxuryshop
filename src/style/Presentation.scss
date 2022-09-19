@@ -1,0 +1,34 @@
+.presentation {
+
+    background: url('../../public/images/caroussel/vitrine.jpg') fixed 50%/cover;
+    height: 45rem;
+    filter: brightness(90%);
+    
+    .foreground {
+        background: rgba(255, 255, 255, 0.667);
+        width: 50%;
+        left: 28rem;
+        top: 18rem;
+        height: 12rem;
+        position: absolute;
+        
+        .text-presentation {
+            text-transform: uppercase;
+            font-size: 3rem;
+            font-style: bold;
+        }
+        button {
+            width: 30%;
+            border: 0;
+            background-color: black;
+            color: white;
+            height: 3rem;
+            margin-top: 1rem;
+            transition: all ease .4s;
+        }
+        button:hover {
+            color: black;
+            background-color: white;
+        }
+    }
+}

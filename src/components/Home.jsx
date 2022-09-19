@@ -1,14 +1,27 @@
 import React from 'react';
-import StripeContainer from '../api/stripe/StripeContainer';
 import '../style/Home.scss';
+import Presentation from './Presentation';
+import Transition from './Transition';
+import NavBarApp from '../components/NavBarApp';
+import CarouselText from './CarouselText';
+import { items } from '../util/util';
+import Category from './Category';
 
 
 const Home = () => {
+
+    //console.log("public url", process.env.PUBLIC_URL);
+
     return (
-        <div className='home'>
-            <h1>Stripe</h1>
-            <StripeContainer />
-        </div>
+        <Transition>
+            <div className='home'>
+                <NavBarApp />
+                <Presentation />
+                <CarouselText items={items} />
+                <Category />
+            </div>
+        </Transition>
+
     );
 };
 

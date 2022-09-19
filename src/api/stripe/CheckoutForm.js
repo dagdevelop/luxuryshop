@@ -1,45 +1,44 @@
 import React from 'react';
-import axios from 'axios';
 import '../../style/CheckoutForm.scss';
-import { CardNumberElement, CardExpiryElement, CardCvcElement, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import { Row, Col, Spinner } from 'react-bootstrap';
+import { useStripe } from '@stripe/react-stripe-js';
+import Transition from '../../components/Transition';
+
 
 const CheckoutForm = () => {
     const stripe = useStripe();
-    const elements = useElements();
+
+    const items = [
+        {
+            price: "price_1LhBfLFEkOWmk8ZuU7trYumG",
+            quantity: 1
+        },
+        {
+            price: "price_1LhCBjFEkOWmk8ZucxtyEe44",
+            quantity: 1
+        }
+    ];
+
+    const checkoutOptions = {
+        lineItems: [...items],
+        mode: "payment",
+        successUrl: `${window.location.origin}/success`,
+        cancelUrl: `${window.location.origin}/cancel`
+    };
 
 
-    const handleSubmit = async (e) => {
+    const redirectToCheckout = async (e) => {
         e.preventDefault();
-
-        
+        const { error } = await stripe.redirectToCheckout(checkoutOptions);
+        console.log("error stripe : ", error);
     }
 
+
     return (
-        <div className='checkoutForm'>
-            <form className='form' onSubmit={handleSubmit}>
-                <Row>
-                    <CardNumberElement className="card-number" onBlur={true} options={{ showIcon: true }} />
-                </Row>
-
-                <Row>
-                    <Col className='card-extra-data'>
-                        <CardExpiryElement onBlur={true} />
-                    </Col>
-                    <Col className='card-extra-data'>
-                        <CardCvcElement onBlur={34} options={{ showIcon: true }} />
-                    </Col>
-
-                </Row>
-
-
-                <Row>
-                    <button>Payer</button>
-                </Row>
-
-            </form>
-
-        </div>
+        <Transition>
+            <div className='checkoutForm mt-3'>
+                <button onClick={redirectToCheckout}>checkout</button>
+            </div>
+        </Transition>
     );
 };
 
