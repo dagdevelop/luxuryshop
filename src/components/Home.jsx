@@ -10,7 +10,7 @@ import Category from './Category';
 
 const Home = () => {
 
-    //console.log("public url", process.env.PUBLIC_URL);
+    console.log("public url", process.env.PUBLIC_URL);
 
     return (
         <Transition>

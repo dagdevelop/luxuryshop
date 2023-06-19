@@ -7,8 +7,9 @@
     .foreground {
         background: rgba(255, 255, 255, 0.667);
         width: 50%;
-        left: 28rem;
-        top: 18rem;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
         height: 12rem;
         position: absolute;
         

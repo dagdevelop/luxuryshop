@@ -4,7 +4,7 @@ import '../style/NavBar.scss';
 
 const NavBarApp = () => {
     return (
-        <div>
+        <div className='navBar'>
 
             <nav>
                 <div className='titleLogo'>LUXURY</div>
@@ -17,6 +17,7 @@ const NavBarApp = () => {
                     </ul>
                 </div>
             </nav>
+            
         </div>
     );
 };
